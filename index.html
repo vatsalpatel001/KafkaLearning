@@ -1,49 +1,4 @@
-<!-- kafka
-kafka cluster - group of kafka broker
-kafka broker -  one of server where kafka run
-kafka producer - write new data to server
-kafka consumer -read data from server
-zookeeper - keep track of kafaka cluster health
-kafaka connect - data from external entity like database, file ( without writitng code)  Declarative intigratin
-kafaka stream - Data transformation 
- -->
-
- <!-- Install Kafka and zookeeper on windows
-
-link to download binaray: https://downloads.apache.org/kafka/3.5.0/kafka_2.13-3.5.0.tgz (100mb)
-
-.tgz is like .zip file
-
-In unzip folder theier is bin, config, libs, licenses and site-docs
-
-in bin/windows theier is bat file will be run using cmd
-
-in config file some configration is their zookeeper.properties, server.properties etc
-
-zookeeper-server-start.bat ..\..\config\zookeeper.properties
-
-kafka-server-start.bat ..\..\config\server.properties
-
-kafka-topics.bat --create --topic my-topic --bootstrap-server localhost:9092 --replication-factor 1 --partitions 3
-
-kafka-console-producer.bat --broker-list localhost:9092 --topic my-topic
-
-kafka-console-consumer.bat --bootstrap-server localhost:9092 --topic my-topic --from-beginning
-
-error and solution
-error1: The term 'zookeeper-server-start.bat' is not recognized as the name of a cmdlet,
-function, script file, or operable program. Check the spelling of the name, or if a path was included, verify that the
-path is correct and try again., 
-solution1: By default, PowerShell restricts the execution of scripts from the current directory to enhance security and prevent accidental execution of malicious scripts. This is known as the "Execution Policy."To run the zookeeper-server-start.bat script from the current directory, you should use the .\ prefix to indicate that the script is located in the current directory. 
-
-eror 2 : The "The input line is too long" error message 
-solution 2:If the paths in the command are too long, try moving the Kafka installation directory to a location with a shorter path or rename some directories to shorten the overall path length.
-
-error 3 : The error message "'java' is not recognized as an internal or external command
-soultion 3 : download and install Java from the official website: https://www.java.com/en/download/ -->
-
-
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html>
 
 <head>
@@ -53,224 +8,29 @@ soultion 3 : download and install Java from the official website: https://www.ja
 </head>
 
 <body>
-    <div class="container mt-5">
-        <h2>Explaining Kafka</h2>
-        <ul class="list-group mt-3">
-            <li class="list-group-item">
-                <strong>Kafka:</strong> Imagine it as a special mailbox for your friends to send messages to each other
-                efficiently.
-            </li>
-            <li class="list-group-item">
-                <strong>Friends:</strong> They can drop their messages into Kafka (the mailbox) instead of sending
-                messages directly to each other.
-            </li>
-            <li class="list-group-item">
-                <strong>Kafka Topics:</strong> Kafka organizes messages into different categories, like topics in the
-                mailbox.
-            </li>
-            <li class="list-group-item">
-                <strong>Messages:</strong> Your friends can talk about different things by putting their messages in
-                different topics.
-            </li>
-            <li class="list-group-item">
-                <strong>Reading Messages:</strong> Everyone can pick up messages from Kafka whenever they want, even if
-                they missed some earlier.
-            </li>
-            <li class="list-group-item">
-                <strong>Kafka Brokers:</strong> These are like additional mailboxes that keep copies of messages to
-                ensure they are safe. If one mailbox stops working, messages are still safe in others.
-            </li>
-            <li class="list-group-item">
-                <strong>Efficiency:</strong> Kafka is super-efficient and perfect for handling large amounts of
-                real-time data reliably.
-            </li>
-        </ul>
-    </div>
-    <div class="container mt-5">
-        <h2>Kafka Terminology</h2>
-        <ul class="list-group mt-3">
-            <li class="list-group-item">
-                <strong>Kafka Cluster:</strong> A group of Kafka brokers working together to form a distributed
-                messaging system.
-            </li>
-            <li class="list-group-item">
-                <strong>Kafka Broker:</strong> A server where Kafka runs, responsible for managing storage, handling
-                read and write requests, and replicating messages.
-            </li>
-            <li class="list-group-item">
-                <strong>Kafka Producer:</strong> Writes new data (messages) to the Kafka server for distribution to
-                topics.
-            </li>
-            <li class="list-group-item">
-                <strong>Kafka Consumer:</strong> Reads data from the Kafka server, processing messages from subscribed
-                topics.
-            </li>
-            <li class="list-group-item">
-                <strong>Zookeeper:</strong> Keeps track of Kafka cluster health, manages configuration information, and
-                assists in leader election and coordination.
-            </li>
-            <li class="list-group-item">
-                <strong>Kafka Connect:</strong> Facilitates data integration from external entities like databases or
-                files into Kafka without writing custom code, offering declarative integration.
-            </li>
-            <li class="list-group-item">
-                <strong>Kafka Streams:</strong> Enables data transformation and real-time stream processing within Kafka,
-                a lightweight library for building stream processing applications.
-            </li>
-        </ul>
-    </div>
-    <div class="container mt-5">
-        <h2>Getting Started with Kafka - Glossary</h2>
-        <table class="table table-bordered mt-3">
-            <thead>
-                <tr>
-                    <th>Term</th>
-                    <th>Explanation</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>Kafka Cluster</td>
-                    <td>A group of Kafka brokers working together to form a distributed messaging system.</td>
-                </tr>
-                <tr>
-                    <td>Kafka Broker</td>
-                    <td>A server running Kafka that handles read and write requests, manages storage, and replicates
-                        messages.</td>
-                </tr>
-                <tr>
-                    <td>Kafka Producer</td>
-                    <td>A client application that writes data (messages) to Kafka topics for distribution.</td>
-                </tr>
-                <tr>
-                    <td>Kafka Consumer</td>
-                    <td>A client application that reads data from Kafka topics to process the messages.</td>
-                </tr>
-                <tr>
-                    <td>Topic</td>
-                    <td>A logical channel in Kafka where messages are published by producers and consumed by
-                        consumers.</td>
-                </tr>
-                <tr>
-                    <td>Partition</td>
-                    <td>A partition is a subset of a topic and represents a sequence of messages.</td>
-                </tr>
-                <tr>
-                    <td>Offset</td>
-                    <td>An offset is a unique identifier of a message within a partition.</td>
-                </tr>
-                <tr>
-                    <td>Leader</td>
-                    <td>The Kafka broker responsible for handling read and write requests for a specific partition.</td>
-                </tr>
-                <tr>
-                    <td>Replication</td>
-                    <td>Replicating data across multiple brokers for fault tolerance and high availability.</td>
-                </tr>
-                <tr>
-                    <td>Producer API</td>
-                    <td>An API provided by Kafka to enable producers to publish data to Kafka topics.</td>
-                </tr>
-                <tr>
-                    <td>Consumer API</td>
-                    <td>An API provided by Kafka to enable consumers to subscribe and receive messages from Kafka
-                        topics.</td>
-                </tr>
-                <tr>
-                    <td>Consumer Group</td>
-                    <td>A set of consumers sharing the load of processing messages from a topic.</td>
-                </tr>
-                <tr>
-                    <td>Zookeeper</td>
-                    <td>A distributed coordination service used by Kafka for managing the cluster.</td>
-                </tr>
-                <tr>
-                    <td>Kafka Connect</td>
-                    <td>A framework for integrating Kafka with external systems through pre-built connectors.</td>
-                </tr>
-                <tr>
-                    <td>Kafka Streams</td>
-                    <td>A lightweight library for building real-time stream processing applications on Kafka.</td>
-                </tr>
-                <tr>
-                    <td>Producer Acknowledgment</td>
-                    <td>The mechanism to ensure producers receive acknowledgment from brokers after producing messages.
-                    </td>
-                </tr>
-                <tr>
-                    <td>Consumer Offsets</td>
-                    <td>The mechanism that allows consumers to track the last read message in a topic partition.</td>
-                </tr>
-                <tr>
-                    <td>Retention Policy</td>
-                    <td>The policy that determines how long Kafka retains messages in a topic before deleting them.</td>
-                </tr>
-                <tr>
-                    <td>Message Compression</td>
-                    <td>The option to compress messages to reduce network bandwidth and storage utilization.</td>
-                </tr>
-                <tr>
-                    <td>Partition Rebalance</td>
-                    <td>The process of redistributing partitions across brokers to achieve load balancing.</td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
-
-    <div class="container mt-5">
-        <h2>Install Kafka and Zookeeper on Windows</h2>
-        <p>Link to download Kafka binary: <a href="https://downloads.apache.org/kafka/3.5.0/kafka_2.13-3.5.0.tgz"
-                target="_blank">https://downloads.apache.org/kafka/3.5.0/kafka_2.13-3.5.0.tgz</a> (100 MB)</p>
-        <p>.tgz is like a .zip file.</p>
-        <p>In the unzipped folder, you will find the following directories:</p>
-        <ul>
-            <li>bin</li>
-            <li>config</li>
-            <li>libs</li>
-            <li>licenses</li>
-            <li>site-docs</li>
-        </ul>
-        <p>In the "bin/windows" directory, there are bat files that will be run using the command prompt (cmd).</p>
-        <p>In the "config" directory, some configurations are available, such as zookeeper.properties and
-            server.properties.</p>
-
-        <h4>Commands to Start Kafka and Zookeeper:</h4>
-        <ul>
-            <li><strong>Start Zookeeper:</strong> zookeeper-server-start.bat ..\..\config\zookeeper.properties</li>
-            <li><strong>Start Kafka:</strong> kafka-server-start.bat ..\..\config\server.properties</li>
-        </ul>
-
-        <h4>Other Kafka Commands:</h4>
-        <ul>
-            <li>Create a topic:
-                kafka-topics.bat --create --topic my-topic --bootstrap-server localhost:9092 --replication-factor 1
-                --partitions 3
-            </li>
-            <li>Produce messages to a topic:
-                kafka-console-producer.bat --broker-list localhost:9092 --topic my-topic
-            </li>
-            <li>Consume messages from a topic:
-                kafka-console-consumer.bat --bootstrap-server localhost:9092 --topic my-topic --from-beginning
-            </li>
-        </ul>
-
-        <h4>Error and Solutions:</h4>
-        <p><strong>Error 1:</strong> The term 'zookeeper-server-start.bat' is not recognized as the name of a cmdlet,
-            function, script file, or operable program. Check the spelling of the name, or if a path was included, verify
-            that the path is correct and try again.</p>
-        <p><strong>Solution 1:</strong> By default, PowerShell restricts the execution of scripts from the current
-            directory to enhance security and prevent accidental execution of malicious scripts. To run the
-            zookeeper-server-start.bat script from the current directory, you should use the .\ prefix to indicate that
-            the script is located in the current directory.</p>
-
-        <p><strong>Error 2:</strong> The "The input line is too long" error message.</p>
-        <p><strong>Solution 2:</strong> If the paths in the command are too long, try moving the Kafka installation
-            directory to a location with a shorter path or rename some directories to shorten the overall path length.</p>
-
-        <p><strong>Error 3:</strong> The error message "'java' is not recognized as an internal or external command.</p>
-        <p><strong>Solution 3:</strong> Download and install Java from the official website:
-            <a href="https://www.java.com/en/download/" target="_blank">https://www.java.com/en/download/</a></p>
-    </div>
+    <div class="container mt-4">
+        <h1>Welcome to kafka Learning!</h1>
+        <p>Hello, I am Vatsal Patel, Recently, I started learning kafka. Here, I will regularly update my learning progress, providing a comprehensive backup for myself and others to quickly get started and troubleshoot any encountered problems.</p>
+    
+        <div class="mt-4">
+          <a href="./kafka.html" class="btn btn-primary">kafka</a>
+          <a href="./docker.html" class="btn btn-primary">docker</a>
+    
+    
+        </div>
+    
+    
+        <!-- <img src="./assets/vatsal_patel.png" alt="Your Image"> -->
+        
+        <div class="mt-4">
+          <a href="https://github.com/vatsalpatel001" class="btn btn-success">Github</a>
+          <a href="https://www.linkedin.com/in/vatsalpatel001/" class="btn btn-success">Linkedin</a>
+          <a href="https://vatsalpatel32.com/" class="btn btn-success">Website</a>     
+        </div>
+      </div>
+    <br>
+    <br>
+    <br>
 
 
     <!-- Add Bootstrap JS and jQuery links for table styling -->

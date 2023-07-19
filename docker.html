@@ -1,0 +1,146 @@
+<!-- Docker
+A platform for running bulding and shipping application
+It works on local but not worked on other system -> Because environment setup, system varibale, verison are deffrent, or some file is missng.
+so docker comes for resque.
+    It runs everywhere,
+    container -> isolated enivornment 
+    constitancy
+vertiual machine vs contanier
+    hyperviosor for create new vertiual machine ->VirtualBox, VMware, Hyper-v(for vindows)
+    each vertiual machine needs a full-blown os
+    slow to start
+    resourse intensive
+Container
+    more lightweight
+    Use os of the host
+    start quickly
+    need less hardwere resources
+
+Docker client->restApI->server(Docker Engine)
+container is like process
+A kernal manages hardwere and application, on linux we can not run windows apllication and wisevrse because of diffrent kernal
+windows have windows and linux kernal 
+To get started download desktop docker
+    https://www.docker.com/products/docker-desktop/
+Wsl2 error -> update linux kernal
+https://learn.microsoft.com/en-us/windows/wsl/install-manual#step-4---download-the-linux-kernel-update-package
+
+after installation check verison
+ docker version
+ Dockerfile-> image
+image contain
+ cut down of os
+ a runtime envirenment
+ application files
+ third party libraries
+ environment variable
+ 
+we can create contanier from image
+Dockerhub is like github for git
+
+Docker in action
+
+mkdir hello-docker
+cd hello-docker
+code .
+
+make two file app.js and Dockerfile
+
+app.js 
+console.log("hello docker");
+Dockerfile
+FROM node:alpine
+COPY . /app
+CMD node /app/app.js
+
+docker build -t  hello-docker .
+. for current directory
+
+docker iamge ls
+
+docker run hello-docker
+
+
+once image is genrated you can access application from anywhere
+
+ -->
+
+
+
+ <!DOCTYPE html>
+ <html>
+ <head>
+   <title>Docker Notes</title>
+   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+ </head>
+ <body>
+   <div class="container">
+     <h1>Docker</h1>
+     <p>A platform for running, building, and shipping applications.</p>
+     
+     <h2>Why Docker?</h2>
+     <p>It works on local but may not work on other systems due to different environment setups, system variables, versions, or missing files. Docker comes to the rescue by providing:</p>
+     <ul>
+       <li>Consistency</li>
+       <li>Portability</li>
+       <li>Isolated environments using containers</li>
+     </ul>
+     
+     <h2>Virtual Machine vs Container</h2>
+     <p>To create new virtual machines, hypervisors like VirtualBox, VMware, and Hyper-V (for Windows) are used. However, virtual machines require a full-blown operating system, are slow to start, and resource-intensive. On the other hand, containers are:</p>
+     <ul>
+       <li>More lightweight</li>
+       <li>Use the host's operating system</li>
+       <li>Start quickly</li>
+       <li>Require fewer hardware resources</li>
+     </ul>
+     
+     <h2>Docker Client, REST API, and Docker Engine</h2>
+     <p>Docker architecture consists of:</p>
+     <ul>
+       <li>Docker client</li>
+       <li>REST API</li>
+       <li>Docker Engine (server)</li>
+     </ul>
+     <p>A container is like a process, and the kernel manages hardware and applications. Linux and Windows have different kernels, so Linux cannot run Windows applications and vice versa.</p>
+     
+     <h2>Getting Started</h2>
+     <p>To get started with Docker:</p>
+     <ol>
+       <li>Download Docker Desktop from <a href="https://www.docker.com/products/docker-desktop/">https://www.docker.com/products/docker-desktop/</a></li>
+       <li>For WSL2 errors, update the Linux kernel. Refer to <a href="https://learn.microsoft.com/en-us/windows/wsl/install-manual#step-4---download-the-linux-kernel-update-package">https://learn.microsoft.com/en-us/windows/wsl/install-manual#step-4---download-the-linux-kernel-update-package</a></li>
+       <li>After installation, check the version using <code>docker version</code></li>
+     </ol>
+     
+     <h2>Dockerfile and Images</h2>
+     <p>A Dockerfile is used to create an image, which contains:</p>
+     <ul>
+       <li>A cut-down OS</li>
+       <li>A runtime environment</li>
+       <li>Application files</li>
+       <li>Third-party libraries</li>
+       <li>Environment variables</li>
+     </ul>
+     
+     <p>Example Dockerfile:</p>
+     <pre>
+ FROM node:alpine
+ COPY . /app
+ CMD node /app/app.js
+     </pre>
+     
+     <h2>Creating and Running a Container</h2>
+     <p>To create and run a container from the image:</p>
+     <pre>
+ $ docker build -t hello-docker .
+ $ docker image ls
+ $ docker run hello-docker
+     </pre>
+     
+     <p>Once the image is generated, you can access the application from anywhere.</p>
+   </div>
+   
+   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+ </body>
+ </html>
+ 
