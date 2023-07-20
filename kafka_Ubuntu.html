@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WSL and Kafka Notes</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+
+<body>
+  <div class="container mt-5">
+    <h2>WSL Installation</h2>
+    <p><code>wsl --install</code></p>
+    <p>This command will enable WSL and install the latest WSL kernel component.</p>
+    <p>Once WSL is installed, you can install Ubuntu or any other Linux distribution from the Microsoft Store or by using
+      the <code>wsl --install</code> command.</p>
+    <p><code>wsl --install -d ubuntu</code></p>
+
+    <h2>Understanding "The requested operation requires elevation" Error</h2>
+    <p>The "The requested operation requires elevation" error typically occurs when you try to run a command that
+      requires administrative privileges, but you haven't opened the PowerShell or Command Prompt with administrator
+      rights.</p>
+    <p>Select "Run as administrator" from the context menu. This will open an elevated PowerShell or Command Prompt
+      instance.</p>
+
+    <h2>Installing Oracle Java (JDK) on Ubuntu</h2>
+    <p><code>sudo add-apt-repository ppa:linuxuprising/java</code></p>
+    <p>The command <code>sudo add-apt-repository ppa:linuxuprising/java</code> adds the "Linux Uprising" Personal
+      Package Archive (PPA) that provides the Oracle Java (JDK) installer for Ubuntu-based systems. Here's what the
+      command does:</p>
+    <ul>
+      <li><code>sudo</code>: It stands for "Super User DO" and is used to execute the following command with
+        administrative privileges (root access). You'll likely be prompted to enter your password to confirm the
+        action.</li>
+      <li><code>add-apt-repository</code>: This is a tool in Ubuntu and other Debian-based Linux distributions that
+        allows you to add new software repositories to the system. Repositories are locations that contain software
+        packages.</li>
+      <li><code>ppa:linuxuprising/java</code>: This is the specific PPA you are adding. PPAs are user-generated
+        repositories that offer additional software or updated versions of existing packages. The PPA
+        "linuxuprising/java" provides the Oracle Java (JDK) installer.</li>
+    </ul>
+    <p>After running this command, Ubuntu will update its package information to include the packages from the newly
+      added PPA. This will allow you to install Oracle Java (JDK) on your system using the package manager. Remember
+      that using third-party PPAs should be done with caution, and you should only add repositories from trusted
+      sources.</p>
+
+    <h2>Updating Package Information</h2>
+    <p><code>sudo apt update</code></p>
+    <p>When you run <code>sudo apt update</code>, the package manager will contact the software repositories. It checks
+      for updates, new package versions, and any changes to the available software.</p>
+
+    <h2>Installing Oracle Java 17 JDK</h2>
+    <p><code>sudo apt install oracle-java17-set-default</code></p>
+    <p>This command will attempt to install the Oracle Java 17 JDK and set it as the default Java version on your
+      system, assuming that the package is available in the "Linux Uprising" PPA.</p>
+    <p>Remember that Oracle Java might have licensing restrictions, and you should review and accept the Oracle JDK
+      license terms during the installation process.</p>
+
+    <h2>Downloading Apache Kafka</h2>
+    <p><code>wget https://downloads.apache.org/kafka/3.5.0/kafka_2.13-3.5.0.tgz</code></p>
+    <p>The command you provided, <code>wget</code>, is a Linux command-line utility used to download files from the
+      web. However, it is not available by default on Windows systems.</p>
+    <p>This will download the Apache Kafka 3.5.0 distribution tarball (<code>kafka_2.13-3.5.0.tgz</code>) from the
+      Apache Kafka website.</p>
+
+    <h2>Extracting Kafka Tarball</h2>
+    <p><code>tar -zxf kafka_2.13-3.5.0.tgz</code></p>
+    <p>The <code>tar</code> command is used to extract files from a tarball (compressed archive). The option
+      <code>-z</code> tells tar to handle gzip-compressed archives, and <code>-x</code> is used to extract the files.
+      The option <code>-f</code> specifies the input file.</p>
+
+    <h2>Print Working Directory</h2>
+    <p><code>pwd</code></p>
+    <p>The <code>pwd</code> command is a shell command used to print the current working directory. It stands for
+      "print working directory."</p>
+
+    <h2>Moving Kafka Directory</h2>
+    <p><code>mv /root/kafka_2.13-3.5.0 /usr/local/kafka</code></p>
+    <p>The command you provided, <code>mv</code>, is used to move or rename files and directories in Linux/Unix-based
+      systems. In this case, you are attempting to move the <code>kafka_2.13-3.5.0</code> from <code>/root</code> to
+      <code>/usr/local/kafka</code>.</p>
+
+    <h2>Creating Kafka Logs Directory</h2>
+    <p><code>mkdir /tmp/kafka-logs</code></p>
+
+    <h2>Changing Directory</h2>
+    <p><code>cd /usr/local/kafka/bin</code></p>
+    <p>You have successfully changed the current working directory to the <code>/usr/local/kafka/bin</code> directory
+      using the <code>cd</code> command.</p>
+
+    <h2>Generating Random UUID for Kafka</h2>
+    <p><code>sudo ./kafka-storage.sh random-uuid</code></p>
+    <p><em>4kRdKzVGT3y0Wlz_MvRuGA</em></p>
+    <p>The <code>kafka-storage.sh</code> script is used to generate a random Universally Unique Identifier (UUID) for
+      Kafka. UUIDs are 128-bit numbers used as unique identifiers, and they are commonly used in distributed systems to
+      avoid collisions and ensure data integrity.</p>
+
+    <h2>Formatting Kafka Storage Log Segment</h2>
+    <p><code>sudo ./kafka-storage.sh format -t 4kRdKzVGT3y0Wlz_MvRuGA -c /usr/local/kafka/config/kraft/server.properties</code></p>
+    <p>By running this command, you are formatting a Kafka storage log segment with the specified UUID and using the
+      provided server properties for configuration.</p>
+
+    <h2>Starting Kafka Server</h2>
+    <p><code>sudo ./kafka-server-start.sh /usr/local/kafka/config/kraft/server.properties</code></p>
+    <p>The command you provided, <code>sudo ./kafka-server-start.sh /usr/local/kafka/config/kraft/server.properties</code>,
+      is used to start the Kafka server using the specified configuration file <code>server.properties</code>.</p>
+
+    <h2>Creating Kafka Topic</h2>
+    <p><code>sudo kafka-topics.sh --create --topic YOUR_TOPIC_NAME --bootstrap-server YOUR_BOOTSTRAP_SERVER --partitions NUM_PARTITIONS --replication-factor REPLICATION_FACTOR</code></p>
+    <p><code>sudo ./kafka-topics.sh --create --topic food --bootstrap-server localhost:9092 --partitions 1 --replication-factor 1</code></p>
+
+    <h2>Using Kafka Console Producer and Consumer</h2>
+    <p><code>sudo ./kafka-console-producer.sh --topic food --bootstrap-server localhost:9092</code></p>
+    <p><code>sudo ./kafka-console-consumer.sh --topic food --bootstrap-server localhost:9092 --from-beginning</code></p>
+  </div>
+</body>
+
+</html>
