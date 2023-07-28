@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conflunt Data Processing</title>
+    <!-- Add Bootstrap CSS from CDN -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+</head>
+<body>
+
+    <div class="container">
+        <h2>Conflunt Data Processing</h2>
+        <div id="imageSlider" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-inner">
+                <!-- The images will be dynamically added here -->
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#imageSlider" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#imageSlider" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+            <div class="carousel-indicators">
+                <!-- The slide number indicators will be dynamically added here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Add Bootstrap JS and your custom script -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const totalImages = 4; // Update this with the total number of images
+
+            // Loop through image names and create HTML elements dynamically for the carousel
+            for (let i = 70; i <= 73; i++) {
+                const imageName = `Screenshot (${i}).png`;
+                const imageUrl = `./Assets/conflunt-Data-Processing/${imageName}`;
+
+                const carouselItem = document.createElement("div");
+                carouselItem.classList.add("carousel-item");
+                if (i === 70) {
+                    carouselItem.classList.add("active");
+                }
+
+                const imageElement = document.createElement("img");
+                imageElement.classList.add("d-block", "w-100");
+                imageElement.src = imageUrl;
+                imageElement.alt = `Screenshot ${i}`;
+
+                carouselItem.appendChild(imageElement);
+                document.querySelector(".carousel-inner").appendChild(carouselItem);
+
+                // Create and append slide number indicators
+                const indicator = document.createElement("button");
+                indicator.setAttribute("type", "button");
+                indicator.setAttribute("data-bs-target", "#imageSlider");
+                indicator.setAttribute("data-bs-slide-to", i - 70);
+                if (i === 70) {
+                    indicator.classList.add("active");
+                }
+                document.querySelector(".carousel-indicators").appendChild(indicator);
+            }
+
+            // Update slide number dynamically when the carousel slide changes
+            const imageSlider = document.getElementById("imageSlider");
+            imageSlider.addEventListener("slid.bs.carousel", function (event) {
+                const currentSlide = event.to + 1;
+                const slideNumberElement = document.getElementById("slideNumber");
+                slideNumberElement.textContent = `${currentSlide} out of ${totalImages}`;
+            });
+
+            // Set initial slide number
+            const slideNumberElement = document.getElementById("slideNumber");
+            slideNumberElement.textContent = `1 out of ${totalImages}`;
+        });
+    </script>
+
+<div class="container mt-5">
+    <h2>Confluent Data Processing</h2>
+    <p>
+        You can download the <a href="./Assets/conflunt-Data-Processing.rar" target="_blank">Project</a>.
+      </p>
+    <h3>Producer</h3>
+    <pre><code>
+        from confluent_kafka import Producer
+        from confluent_kafka.admin import AdminClient, NewTopic
+        import random
+        from faker import Faker
+        import time
+        import json
+        
+        fake = Faker()
+        print(fake)
+        topic ="topic_0"
+        
+        config ={
+            "bootstrap.servers":"pkc-56d1g.eastus.azure.confluent.cloud:9092",
+            "security.protocol":"SASL_SSL",
+            "sasl.mechanisms":"PLAIN",
+            "sasl.username":"GWTXSXGMNQM7CWMT",
+            "sasl.password":"JnU/HXHVdEkg48RdKzDVqb4IkBMoYj3CqDDXPkeXLGuxIPE3qsTVsy2Hkft9NRtw"
+        }
+        
+        Producer = Producer(config)
+        
+        def Genrate_Mesg():    
+            user_names =["ram","laxman","vatsal","anil"]
+        
+            i=0
+            while i <10:
+                # json_string = {"username":f"{random.choice(user_names)}"}
+                json_string = {"username":f"{fake.name()}"}
+                print(json_string)
+                print(json.dumps(json_string))
+                # Producer.produce("Topic_name","message_value","deliver_report")
+                Producer.produce(topic,json.dumps(json_string))
+                i=i+1
+                Producer.flush()
+                time.sleep(4)
+        Genrate_Mesg()
+        
+        
+        
+    </code></pre>
+    <h3>Consumer</h3>
+    <pre><code>
+        from confluent_kafka import Consumer
+        import random
+        from faker import Faker
+        import time
+        import json
+        
+        fake = Faker()
+        print(fake)
+        topic ="topic_0"
+        
+        config ={
+            "bootstrap.servers":"pkc-56d1g.eastus.azure.confluent.cloud:9092",
+            "security.protocol":"SASL_SSL",
+            "sasl.mechanisms":"PLAIN",
+            "sasl.username":"GWTXSXGMNQM7CWMT",
+            "sasl.password":"JnU/HXHVdEkg48RdKzDVqb4IkBMoYj3CqDDXPkeXLGuxIPE3qsTVsy2Hkft9NRtw",
+            "group.id":"foo"
+        }
+        
+        Consumer = Consumer(config)
+        Consumer.subscribe([topic])
+        
+        try:
+            print("consumer")
+            while True:
+                msg =Consumer.poll(0.1) # check every milisecond to check for new data over the topic
+                if msg is None:
+                    continue
+                if msg.error():
+                    print(f"error in record {str(msg.error())}")
+                print(f"consumed message is {msg.value()}")
+                # Convert the bytes message to a string
+                message_str = msg.value().decode('utf-8')
+        
+                # Parse the JSON string to a Python dictionary
+                message_dict = json.loads(message_str)
+        
+                # Access the "username" key in the dictionary
+                username = message_dict["username"]
+        
+                print(f"The username is: {username}")
+        except Exception as e:
+            e.args
+        
+    </code></pre>
+  </div>
+
+
+</body>
+</html>
+

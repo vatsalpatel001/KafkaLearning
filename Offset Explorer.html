@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Offset Explorer</title>
+    <!-- Add Bootstrap CSS from CDN -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+</head>
+<body>
+
+    <div class="container">
+        <h2>Offset Explorer</h2>
+        <div id="imageSlider" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-inner">
+                <!-- The images will be dynamically added here -->
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#imageSlider" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#imageSlider" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+            <div class="carousel-indicators">
+                <!-- The slide number indicators will be dynamically added here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Add Bootstrap JS and your custom script -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const totalImages = 2; // Update this with the total number of images
+
+            // Loop through image names and create HTML elements dynamically for the carousel
+            for (let i = 82; i <= 83; i++) {
+                const imageName = `Screenshot (${i}).png`;
+                const imageUrl = `./Assets/Offset-Explorer/${imageName}`;
+
+                const carouselItem = document.createElement("div");
+                carouselItem.classList.add("carousel-item");
+                if (i === 82) {
+                    carouselItem.classList.add("active");
+                }
+
+                const imageElement = document.createElement("img");
+                imageElement.classList.add("d-block", "w-100");
+                imageElement.src = imageUrl;
+                imageElement.alt = `Screenshot ${i}`;
+
+                carouselItem.appendChild(imageElement);
+                document.querySelector(".carousel-inner").appendChild(carouselItem);
+
+                // Create and append slide number indicators
+                const indicator = document.createElement("button");
+                indicator.setAttribute("type", "button");
+                indicator.setAttribute("data-bs-target", "#imageSlider");
+                indicator.setAttribute("data-bs-slide-to", i - 82);
+                if (i === 82) {
+                    indicator.classList.add("active");
+                }
+                document.querySelector(".carousel-indicators").appendChild(indicator);
+            }
+
+            // Update slide number dynamically when the carousel slide changes
+            const imageSlider = document.getElementById("imageSlider");
+            imageSlider.addEventListener("slid.bs.carousel", function (event) {
+                const currentSlide = event.to + 1;
+                const slideNumberElement = document.getElementById("slideNumber");
+                slideNumberElement.textContent = `${currentSlide} out of ${totalImages}`;
+            });
+
+            // Set initial slide number
+            const slideNumberElement = document.getElementById("slideNumber");
+            slideNumberElement.textContent = `1 out of ${totalImages}`;
+        });
+    </script>
+
+<div class="container mt-5">
+    <h2>Offset Explorer</h2>
+    <p>
+      Offset Explorer is a tool used in Apache Kafka to view and manage the offsets of consumer groups. 
+      It allows users to track the read position of a consumer group in a Kafka topic, which helps in 
+      understanding data consumption and processing progress.
+    </p>
+    <p>
+      You can download the <a href="https://www.kafkatool.com/download.html" target="_blank">Offset Explorer</a>.
+    </p>
+  </div>
+
+
+</body>
+</html>
+
