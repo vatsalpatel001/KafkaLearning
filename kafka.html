@@ -54,6 +54,83 @@ soultion 3 : download and install Java from the official website: https://www.ja
 
 <body>
     <div class="container mt-5">
+        <h1>Kafka Notes</h1>
+        <hr>
+        <h2>Introduction to Kafka</h2>
+        <p>
+          Kafka is a <b>distributed streaming platform</b> designed to handle high-throughput, fault-tolerant data streams, enabling real-time data processing and analytics for applications at scale. <b>It provides a publish-subscribe model</b> for efficiently processing and storing streams of records in a fault-tolerant and durable manner.
+        </p>
+      
+        <p>
+          A distributed streaming platform is a software system designed to handle and process large-scale data streams across multiple nodes or machines in a distributed computing environment.
+        </p>
+      
+        <h3>Fault Tolerance</h3>
+        <p>
+          It ensures data integrity and availability even in the presence of failures, by replicating data across multiple nodes and employing mechanisms for recovery and high availability.
+        </p>
+      
+        <h3>Publish-Subscribe Model</h3>
+        <p>
+          Typically, a distributed streaming platform operates on a publish-subscribe model. Data producers (publishers) send data to topics or streams, and data consumers (subscribers) can subscribe to these topics to receive the data.
+        </p>
+      
+        <h2>Kafka Flavors in the Market</h2>
+        <p>
+          - Apache Kafka: open source, dedicated developer support.<br>
+          <b>- Confluent Kafka: Commercial distribution with tools and UI for Kafka operations.</b> <br>
+          - Confluent & AWS: Managed Kafka Service.
+        </p>
+      
+        <h3>Confluent Kafka</h3>
+        <p>
+          Confluent Kafka is an open-source event streaming platform built on Apache Kafka. It provides additional features and tools to enhance the capabilities of Apache Kafka.
+        </p>
+      
+        <h4>Kafka Python Client</h4>
+        <ul>
+          <li>Producer</li>
+          <li>Consumer</li>
+          <li>Serializer / Deserializer
+            <ul>
+              <li>Protobuf</li>
+              <li>JSON Schema</li>
+              <li>Avro</li>
+            </ul>
+          </li>
+          <li>AdminClient</li>
+        </ul>
+      
+        <h3>Working with Schemas in Python</h3>
+        <ul>
+          <li>Serializer: Convert data into bytes to be stored in Kafka topic.</li>
+          <li>Deserializer: Convert the bytes from Kafka topics into usable data.</li>
+          <li>Schema Registry Client: Provide access to the schema registry.</li>
+        </ul>
+      
+        <h2>What is Event Streaming?</h2>
+        <p>
+          Event streaming is a data integration approach that involves capturing and publishing real-time events to enable the continuous processing, analysis, and distribution of data across systems and applications. It provides a scalable and flexible way to handle high-volume, time-sensitive data streams in various domains such as finance, IoT, and analytics.
+        </p>
+      
+        <h3>What Can I Use Event Streaming For?</h3>
+        <ul>
+          <li>Real-time Analytics: Gain immediate insights and make informed decisions based on up-to-date information.</li>
+          <li>Fraud Detection and Prevention: Detect and prevent fraudulent activities in real-time.</li>
+          <li>Internet of Things (IoT) Applications: Real-time processing of IoT data for applications like remote monitoring and predictive maintenance.</li>
+          <li>Microservices Communication: Communication mechanism between microservices in a distributed architecture.</li>
+          <li>E-commerce and Personalization: Deliver personalized and real-time experiences to customers in e-commerce platforms.</li>
+        </ul>
+      
+        <h2>Kafka Origin</h2>
+        <p>
+          Kafka was originally developed by LinkedIn and is now under Apache Software Foundation.
+        </p>
+      </div>
+      
+
+
+    <div class="container mt-5">
         <h2>Explaining Kafka</h2>
         <ul class="list-group mt-3">
             <li class="list-group-item">
