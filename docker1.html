@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Docker</title>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    />
+    <style>
+        .container {
+            padding: 20px;
+            background-color: #cde0f3;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
+        }
+    
+        h2 {
+            color: #007bff;
+            font-size: 24px;
+            margin-top: 20px;
+        }
+    
+        p {
+            font-size: 16px;
+            line-height: 1.5;
+        }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Docker</h1>
+      <img src="./Assets/docker/1.png" width="400">
+      <img src="./Assets/docker/2.png" width="400">
+      <p>
+        Docker is an open-source platform used for automating the deployment,
+        scaling, and management of applications. It allows applications to run
+        in isolated containers, which are lightweight and portable.
+      </p>
+      <p>
+        Docker simplifies the process of developing, shipping, and running
+        applications, as it provides a consistent environment regardless of the
+        underlying system.
+      </p>
+      <p>
+        Docker uses a client-server architecture, where the Docker client
+        communicates with the Docker daemon, which in turn manages the
+        containers.
+      </p>
+    </div>
+    <div class="container">
+      <pre>
+            FROM python:3.8
+            # Use the official Python 3.8 base image as the starting point for our image
+            
+            WORKDIR /app
+            # Set the working directory inside the container to /app
+            
+            COPY requirements.txt .
+            # Copy the requirements.txt file from the host into the container's /app directory
+            
+            RUN pip install --no-cache-dir -r requirements.txt
+            # Install the Python dependencies listed in the requirements.txt file
+            
+            COPY . .
+            # Copy the rest of the application code from the host into the container's /app directory
+            
+            EXPOSE 8000
+            # Expose port 8000 on the container
+            
+            CMD ["python", "app.py"]
+            # Define the command to run when the container starts
+            
+            </pre
+      >
+    </div>
+
+    <div class="container">
+      <h1>Jenkins</h1>
+      <img src="./Assets/docker/3.jpg" width="400">
+      <p>
+        Jenkins is an open-source automation server used for continuous
+        integration and continuous delivery (CI/CD) pipelines.
+      </p>
+      <p>
+        It allows developers to automate the entire build, test, and deployment
+        process of their applications.
+      </p>
+      <p>
+        Jenkins provides a web-based interface for configuring and managing
+        build jobs, which can be triggered by various events such as code
+        changes or scheduled intervals.
+      </p>
+      <p>
+        Jenkins supports a wide range of plugins and integrations, making it
+        highly customizable and extensible.
+      </p>
+    </div>
+    <div class="container">
+      <pre>
+    pipeline {
+        agent any // Defines that this pipeline can run on any available agent (slave)
+      
+        stages {
+          stage('Build') {
+            steps {
+              echo 'Building the project' // Prints 'Building the project' to the console
+      
+              // Your build steps here...
+              // For example, you might run a shell command or a build script
+            }
+          }
+      
+          stage('Test') {
+            steps {
+              echo 'Running tests' // Prints 'Running tests' to the console
+      
+              // Your test steps here...
+              // For example, you might run unit tests or integration tests
+            }
+          }
+      
+          stage('Deploy') {
+            steps {
+              echo 'Deploying the project' // Prints 'Deploying the project' to the console
+      
+              // Your deployment steps here...
+              // For example, you might deploy to a specific environment or trigger another job
+            }
+          }
+        }
+        
+        post {
+          always {
+            echo 'Pipeline completed' // Prints 'Pipeline completed' to the console regardless of the outcome
+          }
+          
+          success {
+            echo 'Pipeline succeeded' // Prints 'Pipeline succeeded' to the console if the pipeline succeeds
+          }
+          
+          failure {
+            echo 'Pipeline failed' // Prints 'Pipeline failed' to the console if the pipeline fails
+          }
+        }
+      }
+    </pre
+      >
+    </div>
+    <div class="container">
+      <h1>YAML</h1>
+      <img src="./Assets/docker/4.png" width="400">
+      <img src="./Assets/docker/5.png" width="400">
+      <p>
+        YAML is a human-readable data serialization format. It stands for "YAML
+        Ain't Markup Language."
+      </p>
+      <p>
+        YAML is commonly used for configuration files and data exchange between
+        languages or systems.
+      </p>
+      <p>
+        It provides a simple syntax that is easy to read and write, making it
+        popular for defining complex data structures.
+      </p>
+      <p>
+        YAML files consist of nested key-value pairs and can include lists and
+        maps.
+      </p>
+      <p>The .yml file extension is commonly used to indicate that a file contains data written in YAML format. However, it is important to note that the choice of file extension (.yml or .yaml) does not affect the content or the way YAML is interpreted. Both .yml and .yaml files can be used interchangeably.</p>
+    </div>
+  
+
+    <div class="container">
+      <h1>Docker Image and Docker Container</h1>
+      <h3>Docker Image</h3>
+      <p>
+        An image is a lightweight, standalone, and executable software package
+        that includes everything needed to run a piece of software, including
+        the code, runtime, libraries, and system tools.
+      </p>
+      <p>
+        Images can be built using Dockerfiles, which are text files that specify
+        the steps to create an image.
+      </p>
+      <h3>Docker Container</h3>
+      <p>
+        A container is an instance of an image that can be run, started,
+        stopped, moved, and deleted.
+      </p>
+      <p>
+        Containers provide an isolated and reproducible environment for running
+        applications.
+      </p>
+      <p>
+        Each container runs independently of other containers, with its own
+        resources and filesystem.
+      </p>
+    </div>
+
+    <div class="container">
+      <h1>run and CMD Command in Dockerfile</h1>
+      <h3>RUN Command</h3>
+      <p>
+        The RUN command is used in a Dockerfile to execute commands during the
+        build process of an image.
+      </p>
+      <p>
+        It allows you to install dependencies, compile code, and perform other
+        build-time tasks.
+      </p>
+      <p>
+        Each RUN command creates a new layer in the image, and the result of the
+        command is saved in that layer.
+      </p>
+      <h3>CMD Command</h3>
+      <p>
+        The CMD command is used in a Dockerfile to specify the default command
+        that should be run when a container is started from the image.
+      </p>
+      <p>
+        It defines the main executable for the container. Only the last CMD
+        instruction in a Dockerfile has an effect.
+      </p>
+    </div>
+
+    <div class="container mt-4">
+        <h2>Command: docker pull vats/website</h2>
+        <p>
+            This command is used to pull the Docker image "vats/website" from the Docker Hub registry.
+        </p>
+    
+        <h2>Command: docker images</h2>
+        <p>
+            This command lists all the Docker images that are currently available on your system.
+        </p>
+    
+        <h2>Command: docker scout quickview vats/website</h2>
+        <p>
+            This command provides a quick summary view of the Docker container associated with the image "vats/website".
+        </p>
+    
+        <h2>Command: docker ps</h2>
+        <p>
+            This command lists all the running Docker containers on your system.
+        </p>
+    
+        <h2>Command: docker stop 0a53</h2>
+        <p>
+            This command stops the Docker container with the ID "0a53".
+        </p>
+    
+        <h2>Command: docker ps -a</h2>
+        <p>
+            This command lists all the Docker containers, including the stopped ones, on your system.
+        </p>
+    
+        <h2>Command: docker hub and Docker</h2>
+        <p>
+            Docker Hub is a cloud-based registry that allows you to access and share Docker images. Docker is the platform that enables the creation, deployment, and management of Docker containers.
+        </p>
+    </div>
+
+
+    <div class="container">
+      <h1>Kubernetes</h1>
+      <img src="./Assets/docker/6.png" width="400">
+      <p>
+        Kubernetes (also known as K8s) is an open-source container orchestration
+        platform that automates the deployment, scaling, and management of
+        containerized applications.
+      </p>
+      <p>
+        It provides a highly available, scalable, and fault-tolerant environment
+        for running containers across multiple machines.
+      </p>
+      <p>
+        Kubernetes abstracts the underlying infrastructure and provides a
+        consistent API for managing and interacting with containers.
+      </p>
+      <p>
+        It supports automatic scaling, load balancing, service discovery, and
+        rolling updates, making it suitable for running and managing
+        production-grade applications.
+      </p>
+    </div>
+
+
+<!-- Link to YouTube playlist -->
+<a href="https://www.youtube.com/@TrainWithShubham/playlists" class="btn btn-primary">YouTube Playlist</a>
+
+<!-- Link to devhints.io -->
+<a href="https://devhints.io/docker-compose" class="btn btn-secondary">devhints.io</a>
+
+<!-- Link to docker.pdf -->
+<a href="./Assets/docker/docker.pdf" class="btn btn-success">docker.pdf</a>
+
+
+  </body>
+</html>
